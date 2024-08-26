@@ -1,9 +1,9 @@
 # REPTARindex
 A command-line tool for recursive graph-based document indexing and retrieval with hierarchical cluster summaries and inverted keyword indexing.
 
-REPTARindex is a document retrieval framework that employs recursive clustering and graph-based representation. It processes input documents into chunks, generates embeddings, and constructs a hierarchical graph structure. The system creates summaries for each cluster level, enabling efficient multi-level search. During retrieval, it uses an inverted keyword index for initial filtering, then traverses the cluster hierarchy, matching the query against cluster summaries to narrow the search space. This approach significantly reduces computational costs for large document corpora. The framework balances between broad context understanding through cluster summaries and specific detail retrieval from individual document chunks, offering a flexible and efficient solution for various information retrieval tasks.
+![image](https://github.com/user-attachments/assets/935189da-4f90-4c68-9626-29c6a3809007)
 
-# REPTARindex Usage Instructions
+REPTARindex is a document retrieval framework that employs recursive clustering and graph-based representation. It processes input documents into chunks, generates embeddings, and constructs a hierarchical graph structure. The system creates summaries for each cluster level, enabling efficient multi-level search. During retrieval, it uses an inverted keyword index for initial filtering, then traverses the cluster hierarchy, matching the query against cluster summaries to narrow the search space. This approach significantly reduces computational costs for large document corpora. The framework balances between broad context understanding through cluster summaries and specific detail retrieval from individual document chunks, offering a flexible and efficient solution for various information retrieval tasks.
 
 ## Installation
 
@@ -13,7 +13,7 @@ pip install reptarindex
 
 ## Building the Index
 
-1. Prepare your documents in a folder.
+1. Prepare your documents in a folder or subfolders.
 2. Run the indexing command:
 
 ```bash
