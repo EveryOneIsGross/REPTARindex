@@ -5,7 +5,7 @@ A command-line tool for recursive graph-based document indexing and retrieval wi
 ```mermaid
 graph TD
 %%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#ffaa00', 'primaryTextColor': '#000000', 'primaryBorderColor': '#ffaa00', 'lineColor': '#ffaa00', 'secondaryColor': '#ffaa00', 'tertiaryColor': '#ffaa00', 'clusterBkg': 'none', 'clusterBorder': 'none', 'fontSize': '20px'}}}%%
-    %% Indexing Process
+
     A[Input Documents] --> B[Text Extraction & Chunking]
     B --> C[Embedding Generation]
     C --> D[Initial Graph Creation]
@@ -20,7 +20,7 @@ graph TD
     G --> |Optimize Graph|D
     H --> |Update Embeddings|C
 
-    %% Search Process
+
     J[User Query] --> K[Query Processing & Embedding]
     K --> L[Initial Filtering with Inverted Index]
     I --> L
