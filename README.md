@@ -168,3 +168,5 @@ This tree structure enables the system to perform efficient searches by:
 3. Comparing the query embedding with cluster and document embeddings for similarity-based retrieval.
 
 The hierarchical nature of this structure allows REPTARindex to balance between broad context understanding (through cluster summaries) and specific detail retrieval (from individual document chunks), making it effective for various information retrieval tasks.
+
+![image](https://github.com/user-attachments/assets/ab88b523-3f1d-40de-a658-e897bac9c121)
