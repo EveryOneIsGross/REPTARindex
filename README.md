@@ -40,7 +40,7 @@ graph TD
     I -.-> |Cluster Summaries|N
     I -.-> |Document Embeddings|O
 
-    subgraph
+    subgraph Indexing Process
     A
     B
     C
@@ -52,7 +52,7 @@ graph TD
     I
     end
 
-    subgraph
+    subgraph Search Process
     J
     K
     L
@@ -62,6 +62,6 @@ graph TD
     P
     end
 
-
-
+    style Indexing Process fill:#f9f,stroke:#333,stroke-width:4px
+    style Search Process fill:#bbf,stroke:#333,stroke-width:4px
 ```
