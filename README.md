@@ -100,3 +100,77 @@ graph TD
     end
 
 ```
+
+Here's an explanation of how the internal db tree structure might look:
+
+1. Root Level:
+   The graph starts with a root node, which represents the entire document collection.
+
+2. Folder Nodes:
+   - Directly under the root, you'll have nodes representing the top-level folders in your input directory.
+   - Each folder node can have child nodes representing subfolders or document chunks.
+
+3. Document Chunk Nodes:
+   - Each document is split into chunks (default size of 200 tokens with 50 token overlap).
+   - These chunk nodes are children of their respective folder nodes.
+   - Each chunk node contains the text of that chunk, its embedding, and metadata like start and end positions within the original document.
+
+4. Cluster Nodes:
+   - The system performs recursive clustering on the document chunks.
+   - Cluster nodes are created at various levels, grouping similar chunks together.
+   - Each cluster node has:
+     - A summary of the content it represents
+     - An embedding (average of its children's embeddings)
+     - A list of child nodes (which can be other clusters or document chunks)
+
+5. Hierarchical Structure:
+   - The clustering process creates a hierarchical structure with a maximum depth (default is 3 levels).
+   - At each level, there can be up to 10 clusters (default max_clusters value).
+   - Clusters with fewer than 5 nodes (default min_cluster_size) are not further subdivided.
+
+Here's a visual representation of what this tree structure might look like:
+
+```
+Root
+├── Folder1/
+│   ├── Cluster1_1 (Summary: "Topic A overview")
+│   │   ├── Cluster1_1_1 (Summary: "Subtopic A1")
+│   │   │   ├── Document1_Chunk1
+│   │   │   ├── Document1_Chunk2
+│   │   │   └── Document2_Chunk1
+│   │   └── Cluster1_1_2 (Summary: "Subtopic A2")
+│   │       ├── Document2_Chunk2
+│   │       └── Document3_Chunk1
+│   └── Cluster1_2 (Summary: "Topic B overview")
+│       ├── Document4_Chunk1
+│       └── Document4_Chunk2
+├── Folder2/
+│   ├── Subfolder2_1/
+│   │   └── Cluster2_1_1 (Summary: "Topic C overview")
+│   │       ├── Document5_Chunk1
+│   │       └── Document5_Chunk2
+│   └── Cluster2_2 (Summary: "Topic D overview")
+│       ├── Document6_Chunk1
+│       ├── Document6_Chunk2
+│       └── Document7_Chunk1
+└── Folder3/
+    └── Cluster3_1 (Summary: "Topic E overview")
+        ├── Document8_Chunk1
+        ├── Document8_Chunk2
+        └── Document9_Chunk1
+```
+
+Key points about this structure:
+
+1. Folders and subfolders maintain the original directory structure.
+2. Documents are split into chunks, which become leaf nodes in the tree.
+3. Clusters group similar chunks together, creating a hierarchy of topics and subtopics.
+4. Each cluster has a summary, providing an overview of its contents.
+5. The structure allows for efficient navigation from broad topics to specific document chunks.
+
+This tree structure enables the system to perform efficient searches by:
+1. Using the inverted index to quickly find relevant documents based on keywords.
+2. Traversing the cluster hierarchy to narrow down the search space.
+3. Comparing the query embedding with cluster and document embeddings for similarity-based retrieval.
+
+The hierarchical nature of this structure allows REPTARindex to balance between broad context understanding (through cluster summaries) and specific detail retrieval (from individual document chunks), making it effective for various information retrieval tasks.
