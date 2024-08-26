@@ -1,4 +1,4 @@
-from reptarindex import Graph, build_graph, save_graph, load_graph
+from reptarINDEX import Graph, build_graph, save_graph, load_graph
 import asyncio
 
 async def create_index(input_folder, output_file, chunk_size=200, overlap=50, embedding_model="all-minilm", max_depth=3, min_cluster_size=5, max_clusters=10):
